@@ -12,6 +12,7 @@ header
 content
 {
 	padding: 40px;
+	display: block;
 }
 
 footer
