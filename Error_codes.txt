@@ -1,0 +1,7 @@
+Error codes
+-----------
+
+Beneath are a list of error codes returned from the API and what they mean:
+
+ 400-410 - service unavailable, bad configuration of basic system
+
