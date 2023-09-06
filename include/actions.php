@@ -46,6 +46,7 @@ if( $_REQUEST[ 'action' ] == 'list' )
 		{
 			die( '{"response":1,"message":"Success.","wallpapers":' . json_encode( $papers ) . '"}' );
 		}
+		die( '{"response":-1,"message":"No wallpapers."}' );
 	}
 	die( '{"response":-1,"message":"Failed to fetch wallpapers."}' );
 }
