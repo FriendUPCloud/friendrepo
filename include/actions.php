@@ -60,6 +60,7 @@ else if( $_REQUEST[ 'action' ] == 'get' )
 	if( $_REQUEST[ 'type' ] == 'wallpaper' )
 	{
 		$f = stripslashes( urldecode( $_REQUEST[ 'item' ] ) );
+		die( $f );
 		if( !strstr( $f, '..' ) )
 		{
 			if( file_exists( '../archive/wallpapers/' . $f ) )
