@@ -6,7 +6,7 @@
 
 // Do some checks
 if( !file_exists( '../archive' ) )
-	die( '{"message":"Failed to access repository.","response":404"}' );
+	die( '{"message":"Failed to access repository.","response":"404"}' );
 
 header( 'Content-type: application/json; charset=utf-8' );
 
@@ -18,7 +18,7 @@ if( $_REQUEST[ 'action' ] == 'list' )
 	{
 		if( !file_exists( '../archive/wallpaper' ) )
 		{
-			die( '{"response":-1,"message":"No such asset here."}' );
+			die( '{"response":"-1","message":"No such asset here."}' );
 		}
 		$papers = [];
 		if( $d = opendir( '../archive/wallpaper' ) )
@@ -48,11 +48,11 @@ if( $_REQUEST[ 'action' ] == 'list' )
 		}
 		if( count( $papers ) )
 		{
-			die( '{"response":1,"message":"Success.","wallpapers":' . json_encode( $papers ) . '"}' );
+			die( '{"response":"1","message":"Success.","wallpapers":' . json_encode( $papers ) . '"}' );
 		}
-		die( '{"response":-1,"message":"No wallpapers."}' );
+		die( '{"response":"-1","message":"No wallpapers."}' );
 	}
-	die( '{"response":-1,"message":"Failed to fetch wallpapers."}' );
+	die( '{"response":"-1","message":"Failed to fetch wallpapers."}' );
 }
 else if( $_REQUEST[ 'action' ] == 'media' )
 {
@@ -89,6 +89,6 @@ else if( $_REQUEST[ 'action' ] == 'get' )
 		}
 	}
 }
-die( '{"response":-1,"message":"No such REST query."}' );
+die( '{"response":"-1","message":"No such REST query."}' );
 
 ?>
