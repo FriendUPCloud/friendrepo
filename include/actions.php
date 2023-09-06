@@ -35,6 +35,7 @@ if( $_REQUEST[ 'action' ] == 'list' )
 					while( $ff = readdir( $i ) )
 					{
 						if( $ff[0] == '.' ) continue;
+						if( strstr( $ff, '.thumb.' ) ) continue;
 						if( substr( $ff, -4, 4 ) == '.jpg' )
 						{
 							$o->wallpapers[] = $f . '/' . $ff;
