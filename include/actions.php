@@ -8,6 +8,8 @@
 if( !file_exists( '../archive' ) )
 	die( '{"message":"Failed to access repository.","response":404"}' );
 
+header( 'Content-type: text/json; charset=utf-8' );
+
 if( $_REQUEST[ 'action' ] == 'list' )
 {
 	if( $_REQUEST[ 'type' ] == 'wallpapers' )
