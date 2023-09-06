@@ -48,7 +48,7 @@ if( $_REQUEST[ 'action' ] == 'list' )
 		}
 		if( count( $papers ) )
 		{
-			die( '{"response":"1","message":"Success.","wallpapers":' . json_encode( $papers ) . '"}' );
+			die( '{"response":"1","message":"Success.","wallpapers":' . json_encode( $papers ) . '}' );
 		}
 		die( '{"response":"-1","message":"No wallpapers."}' );
 	}
