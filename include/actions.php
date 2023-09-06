@@ -10,9 +10,11 @@ if( !file_exists( '../archive' ) )
 
 header( 'Content-type: application/json; charset=utf-8' );
 
+// List items
 if( $_REQUEST[ 'action' ] == 'list' )
 {
-	if( $_REQUEST[ 'type' ] == 'wallpapers' )
+	// Wallpaper
+	if( $_REQUEST[ 'type' ] == 'wallpaper' )
 	{
 		if( !file_exists( '../archive/wallpaper' ) )
 		{
@@ -55,8 +57,10 @@ if( $_REQUEST[ 'action' ] == 'list' )
 else if( $_REQUEST[ 'action' ] == 'media' )
 {
 }
+// Get items
 else if( $_REQUEST[ 'action' ] == 'get' )
 {
+	// Wallpaper
 	if( $_REQUEST[ 'type' ] == 'wallpaper' )
 	{
 		$f = stripslashes( urldecode( $_REQUEST[ 'item' ] ) );
@@ -66,6 +70,20 @@ else if( $_REQUEST[ 'action' ] == 'get' )
 			{
 				header( 'Content-type: image/jpeg' );
 				readfile( '../archive/wallpaper/' . $f );
+				die();
+			}
+		}
+	}
+	// Wallpaper thumbnail
+	else if( $_REQUEST[ 'type' ] == 'wallpaper-thumbnail' )
+	{
+		$f = stripslashes( urldecode( $_REQUEST[ 'item' ] ) );
+		if( !strstr( $f, '..' ) )
+		{
+			if( file_exists( '../archive/wallpaper/' . $f . '.thumb.jpg' ) )
+			{
+				header( 'Content-type: image/jpeg' );
+				readfile( '../archive/wallpaper/' . $f . '.thumb.jpg' );
 				die();
 			}
 		}
