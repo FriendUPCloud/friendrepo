@@ -57,6 +57,19 @@ else if( $_REQUEST[ 'action' ] == 'media' )
 }
 else if( $_REQUEST[ 'action' ] == 'get' )
 {
+	if( $_REQUEST[ 'type' ] == 'wallpaper' )
+	{
+		$f = $_REQUEST[ 'item' ];
+		if( !strstr( $f, '..' ) )
+		{
+			if( file_exists( '../archive/wallpapers/' . $f ) )
+			{
+				header( 'Content-type: image/jpeg' );
+				readfile( '../archive/wallpapers/' . $f );
+				die();
+			}
+		}
+	}
 }
 die( '{"response":-1,"message":"No such REST query."}' );
 
