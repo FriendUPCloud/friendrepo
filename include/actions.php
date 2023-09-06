@@ -33,7 +33,7 @@ if( $_REQUEST[ 'action' ] == 'list' )
 						if( $ff[0] == '.' ) continue;
 						if( substr( $ff, -4, 4 ) == '.jpg' )
 						{
-							$o->wallpapers[] = $ff;
+							$o->wallpapers[] = $f . '/' . $ff;
 						}
 					}
 					closedir( $i );
