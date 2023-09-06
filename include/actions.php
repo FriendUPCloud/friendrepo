@@ -42,7 +42,7 @@ if( $_REQUEST[ 'action' ] == 'list' )
 			}
 			closedir( $d );
 		}
-		if( count( $papers )
+		if( count( $papers ) )
 		{
 			die( '{"response":1,"message":"Success.","wallpapers":' . json_encode( $papers ) . '"}' );
 		}
