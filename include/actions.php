@@ -59,6 +59,7 @@ else if( $_REQUEST[ 'action' ] == 'get' )
 {
 	if( $_REQUEST[ 'type' ] == 'wallpaper' )
 	{
+		die( 'fop' );
 		$f = $_REQUEST[ 'item' ];
 		if( !strstr( $f, '..' ) )
 		{
