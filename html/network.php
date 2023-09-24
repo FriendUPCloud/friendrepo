@@ -8,6 +8,8 @@
 	This is a network browsing proxy for Friend OS
 */
 
+die( 'Inoperable' );
+
 // Checks if the url contains HTML
 function checkHTML( $url )
 {
