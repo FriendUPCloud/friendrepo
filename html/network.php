@@ -44,7 +44,7 @@ function outputProxyHTML( $htmlUrl )
 {
 
 	// Function to modify URLs in the HTML content
-	function modifyUrls( $htmlContent )
+	function modifyUrls( $htmlContent, $htmlUrl )
 	{
 		// Regular expression to match existing base href tag
 		$basePattern = '/<base[^>]*href=["\'](https?:\/\/[^"\']+)["\'][^>]*>/i';
@@ -52,8 +52,7 @@ function outputProxyHTML( $htmlUrl )
 
 		// Extract the host from the base URL
 		$baseHost = parse_url( $htmlUrl, PHP_URL_HOST );
-		die( $baseHost . ' = ' . $htmlUrl );
-
+		
 		// Check if an existing base href tag is present in the HTML
 		if( preg_match($basePattern, $htmlContent, $matches ) ) 
 		{
@@ -126,7 +125,7 @@ function outputProxyHTML( $htmlUrl )
 	}
 	
 	// Modify the URLs in the HTML content
-	$modifiedHtml = modifyUrls( $htmlContent );
+	$modifiedHtml = modifyUrls( $htmlContent, $htmlUrl );
 	
 	// Output the modified HTML content and the Content-Type header
 	header( 'Content-type: ' . $contentType );
