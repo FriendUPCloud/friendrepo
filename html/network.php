@@ -134,7 +134,9 @@ function outputProxyHTML( $htmlUrl )
 
 if( isset( $_REQUEST[ 'query' ] ) )
 {
-	die( print_r( $_SERVER, 1 ) );
+	$uricomponent = explode( '/', $_SERVER[ 'SCRIPT_URL' ] );
+	$uricomponent = array_pop( $uricomponent );
+	die( $uricomponent . '/' . $_REQUEST[ 'query' ] );
 	$_REQUEST[ 'url' ] = $_REQUEST[ 'query' ];
 }
 
