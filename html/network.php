@@ -55,28 +55,37 @@ function outputProxyHTML( $htmlUrl )
 	}
 
 	// Function to load HTML content from a URL and retrieve the Content-Type header
-	function loadHtmlWithContentTypeFromUrl( $url, &$contentType )
+	function loadHtmlWithContentTypeFromUrl( $url, &$contentType, &$redirectCode )
 	{
-		$ch = curl_init( $url );
-		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
-		curl_setopt( $ch, CURLOPT_HEADER, true );
+		$ch = curl_init($url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_HEADER, true);
+		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false); // Disable automatic redirection
 
-		$response = curl_exec( $ch );
-		$headerSize = curl_getinfo( $ch, CURLINFO_HEADER_SIZE );
-		$contentType = curl_getinfo( $ch, CURLINFO_CONTENT_TYPE );
+		$response = curl_exec($ch);
+		$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE); // Get the HTTP status code
+		$headerSize = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
+		$contentType = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
 
 		curl_close($ch);
 
+		// Check if the HTTP status code is 302 (temporary redirect)
+		$isRedirect = ($httpCode == 302);
+		$redirectCode = $httpCode;
+
 		// Extract the HTML content from the response
-		$htmlContent = substr( $response, $headerSize );
+		$htmlContent = substr($response, $headerSize);
 
 		return $htmlContent;
 	}
 
 	// Load the HTML content from the URL and retrieve the Content-Type header
-	$htmlContent = loadHtmlWithContentTypeFromUrl( $htmlUrl, $contentType );
-
-	die( $htmlContent );
+	$htmlContent = loadHtmlWithContentTypeFromUrl( $htmlUrl, $contentType, $redirectCode );
+	if( $redirectCode != 200 )
+	{
+		die( str_replace( '%code%', $redirectCode, file_get_contents( 'assets/error.html' ) ) );
+	}
+	
 	// Modify the URLs in the HTML content
 	$modifiedHtml = modifyUrls( $htmlContent );
 	
@@ -99,6 +108,6 @@ if( isset( $_REQUEST[ 'url' ] ) )
 	}
 }
 
-die( file_get_Contents( 'assets/404.html' ) );
+die( file_get_contents( 'assets/404.html' ) );
 
 ?>
