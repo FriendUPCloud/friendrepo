@@ -57,21 +57,19 @@ function outputProxyHTML( $htmlUrl )
 	// Function to load HTML content from a URL and retrieve the Content-Type header
 	function loadHtmlWithContentTypeFromUrl( $url, &$contentType )
 	{
-		$context = stream_context_create( [ 'http' => [ 'header' => 'Content-Type' ] ] );
-		$htmlContent = file_get_contents( $url, false, $context, -1, 2048 );
-		die( $htmlContent );
+		$ch = curl_init( $url );
+		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
+		curl_setopt( $ch, CURLOPT_HEADER, true );
 
-		if( $http_response_header )
-		{
-		    foreach( $http_response_header as $header )
-		    {
-		        if( stripos( $header, 'Content-Type:' ) === 0 )
-		        {
-		            $contentType = trim( substr( $header, 13 ) );
-		            break;
-		        }
-		    }
-		}
+		$response = curl_exec( $ch );
+		$headerSize = curl_getinfo( $ch, CURLINFO_HEADER_SIZE );
+		$contentType = curl_getinfo( $ch, CURLINFO_CONTENT_TYPE );
+
+		curl_close($ch);
+
+		// Extract the HTML content from the response
+		$htmlContent = substr( $response, $headerSize );
+
 		return $htmlContent;
 	}
 
