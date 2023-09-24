@@ -71,12 +71,11 @@ function outputProxyHTML( $htmlUrl )
 		        }
 		    }
 		}
-
+		die( $contentType );
 		return $htmlContent;
 	}
 
 	// Load the HTML content from the URL and retrieve the Content-Type header
-	die( $htmlUrl );
 	$htmlContent = loadHtmlWithContentTypeFromUrl( $htmlUrl, $contentType );
 
 	die( $htmlContent );
