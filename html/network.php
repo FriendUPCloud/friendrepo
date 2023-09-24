@@ -132,6 +132,12 @@ function outputProxyHTML( $htmlUrl )
 	die( $modifiedHtml );
 }
 
+if( isset( $_REQUEST[ 'query' ] ) )
+{
+	die( print_r( $_SERVER, 1 ) );
+	$_REQUEST[ 'url' ] = $_REQUEST[ 'query' ];
+}
+
 if( isset( $_REQUEST[ 'url' ] ) )
 {
 	$url = urldecode( $_REQUEST[ 'url' ] );
