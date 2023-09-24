@@ -64,6 +64,13 @@ function outputProxyHTML( $htmlUrl )
 		    $htmlContent = preg_replace( $headPattern, $replacement, $htmlContent );
 		}
 		
+		// Regular expression to match form action attributes in HTML
+		$formPattern = '/<form[^>]*action=["\']([^"\']+)["\'][^>]*>/i';
+
+		// Replace form action attributes with the specified format
+		$htmlContent = preg_replace( $formPattern, '<form action="' . $baseUrl . '/network.php?url=' . urlencode('$1') . '"', $htmlContent );
+
+		
 		// Regular expression to match URLs in HTML attributes (src, href, etc.)
 		$pattern = '/(src|href)=["\'](https?:\/\/[^"\']+)["\']/i';
 		
