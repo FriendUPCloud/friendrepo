@@ -12,7 +12,7 @@
 					if( t[a].onmouseup )
 						t[a].onmouseup = null;
 					if( t[a].getAttribute( 'target' ) )
-						t[a].setAttribute( 'target', '' );
+						t[a].removeAttribute( 'target' );
 				}
 			}
 		}
