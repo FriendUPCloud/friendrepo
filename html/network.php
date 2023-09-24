@@ -133,13 +133,13 @@ function outputProxyHTML( $htmlUrl )
 	die( $modifiedHtml );
 }
 
-if( isset( $_REQUEST[ 'query' ] ) )
+/*if( isset( $_REQUEST[ 'query' ] ) )
 {
 	$uricomponent = explode( '/', $_SERVER[ 'SCRIPT_URL' ] );
 	$uricomponent = $uricomponent[2];
 	die( $uricomponent . '/' . $_REQUEST[ 'query' ] );
 	$_REQUEST[ 'url' ] = $_REQUEST[ 'query' ];
-}
+}*/
 
 if( isset( $_REQUEST[ 'url' ] ) )
 {
