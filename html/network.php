@@ -72,6 +72,8 @@ function outputProxyHTML( $htmlUrl )
 		$htmlContent = preg_replace( '/ target\=\"\_blank\"/i', '', $htmlContent );
 		$htmlContent = preg_replace( '/href=\"\/\//i', '/href=\"' . parse_url( $htmlUrl, PHP_URL_HOST ), $htmlContent );
 		$htmlContent = preg_replace( '/href=\"\//i', '/href=\"', $htmlContent );
+		$htmlContent = preg_replace( '/src=\"\/\//i', '/src=\"' . parse_url( $htmlUrl, PHP_URL_HOST ), $htmlContent );
+		$htmlContent = preg_replace( '/src=\"\//i', '/src=\"', $htmlContent );
 		
 		// Regular expression to match form action attributes in HTML
 		$formPattern = '/<form[^>]*action=["\']([^"\']+)["\'][^>]*>/i';
