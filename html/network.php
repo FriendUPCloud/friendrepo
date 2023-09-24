@@ -76,7 +76,7 @@ function outputProxyHTML( $htmlUrl )
 
 
 		// Regular expression to match URLs in HTML attributes (src, href, etc.)
-		$pattern = '/(src|href)=["\'](https?:\/\/[^"\']+)["\']/i';
+		/*$pattern = '/(src|href)=["\'](https?:\/\/[^"\']+)["\']/i';
 		
 		// Callback function to replace URLs with the modified format
 		$replacement = '$1="network.php?url=' . urlencode( '$2' ) . '"';
@@ -85,9 +85,10 @@ function outputProxyHTML( $htmlUrl )
 		$modifiedContent = preg_replace_callback( $pattern, function( $matches ) use ( $replacement )
 		{
 		    return preg_replace( '/\$(\d+)/', '$', preg_replace( '/\\/', '\\\\', $replacement ) );
-		}, $htmlContent );
+		}, $htmlContent );*/
 		
-		return $modifiedContent;
+		return $htmlContent;
+		//return $modifiedContent;
 	}
 
 	// Function to load HTML content from a URL and retrieve the Content-Type header
