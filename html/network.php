@@ -33,12 +33,37 @@ function checkHTML( $url )
 	return false;
 }
 
+function getBaseUrl() 
+{
+    $protocol = isset( $_SERVER[ 'HTTPS' ] ) && $_SERVER[ 'HTTPS' ] === 'on' ? 'https://' : 'http://';
+    $host = $_SERVER[ 'HTTP_HOST' ];
+    return $protocol . $host;
+}
+
 function outputProxyHTML( $htmlUrl )
 {
 
 	// Function to modify URLs in the HTML content
 	function modifyUrls( $htmlContent )
 	{
+		// Regular expression to match existing base href tag
+		$basePattern = '/<base[^>]*href=["\'](https?:\/\/[^"\']+)["\'][^>]*>/i';
+		$baseUrl = getBaseUrl();
+
+		// Check if an existing base href tag is present in the HTML
+		if( preg_match( $basePattern, $htmlContent, $matches ) )
+		{
+		    // Replace the existing base href tag with the specified format
+		    $htmlContent = preg_replace( $basePattern, '<base href="' . $baseUrl . '/network.php?url=' . urlencode('$1') . '">', $htmlContent );
+		} 
+		else 
+		{
+		    // If no existing base href tag is found, add a new one in the <head> section
+		    $headPattern = '/<head[^>]*>/i';
+		    $replacement = '<head><base href="' . $baseUrl . '/network.php?url=' . urlencode( $baseUrl ) . '">';
+		    $htmlContent = preg_replace( $headPattern, $replacement, $htmlContent );
+		}
+		
 		// Regular expression to match URLs in HTML attributes (src, href, etc.)
 		$pattern = '/(src|href)=["\'](https?:\/\/[^"\']+)["\']/i';
 		
