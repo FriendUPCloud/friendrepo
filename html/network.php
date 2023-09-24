@@ -50,18 +50,21 @@ function outputProxyHTML( $htmlUrl )
 		$basePattern = '/<base[^>]*href=["\'](https?:\/\/[^"\']+)["\'][^>]*>/i';
 		$baseUrl = getBaseUrl();
 
+		// Extract the host from the base URL
+		$baseHost = parse_url( $htmlUrl, PHP_URL_HOST );
+
 		// Check if an existing base href tag is present in the HTML
-		if( preg_match( $basePattern, $htmlContent, $matches ) )
+		if( preg_match($basePattern, $htmlContent, $matches ) ) 
 		{
-		    // Replace the existing base href tag with the specified format
-		    $htmlContent = preg_replace( $basePattern, '<base href="' . $baseUrl . '/network.php?url=' . urlencode('$1') . '">', $htmlContent );
-		} 
+			// Replace the existing base href tag with the specified format
+			$htmlContent = preg_replace($basePattern, '<base href="' . $baseUrl . '/network/' . $baseHost . '/$1">', $htmlContent);
+		}
 		else 
 		{
-		    // If no existing base href tag is found, add a new one in the <head> section
-		    $headPattern = '/<head[^>]*>/i';
-		    $replacement = '<head><base href="' . $baseUrl . '/network.php?url=' . urlencode( $baseUrl ) . '">';
-		    $htmlContent = preg_replace( $headPattern, $replacement, $htmlContent );
+			// If no existing base href tag is found, add a new one in the <head> section
+			$headPattern = '/<head[^>]*>/i';
+			$replacement = '<head><base href="' . $baseUrl . '/network/' . $baseHost . '/">';
+			$htmlContent = preg_replace( $headPattern, $replacement, $htmlContent );
 		}
 		
 		 // Remove target="_blank" attributes from links
