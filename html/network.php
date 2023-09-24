@@ -72,7 +72,7 @@ function outputProxyHTML( $htmlUrl )
 
 		// Regular expression to match <a> tag href links and replace them with the specified format
 		$aTagPattern = '/<a\s+[^>]*href=["\']([^"\']+)["\'][^>]*>/i';
-		$htmlContent = preg_replace( $aTagPattern, '<a href="' . $baseUrl . '/network.php?url=' . urlencode('$1') . '">', $htmlContent );
+		$htmlContent = preg_replace( $aTagPattern, '<a href="' . $baseUrl . '/network.php?url=$1">', $htmlContent );
 
 
 		// Regular expression to match URLs in HTML attributes (src, href, etc.)
