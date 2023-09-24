@@ -134,7 +134,7 @@ function outputProxyHTML( $htmlUrl )
 
 if( isset( $_REQUEST[ 'query' ] ) )
 {
-	if( preg_match( '/(http.*?)\-\-([\w\W]*?)/i', $_REQUEST[ 'query' ], $component) )
+	if( preg_match( '/(http.*?)\-\-([\w\W]*)/i', $_REQUEST[ 'query' ], $component) )
 	{
 	
 		die( print_r( $component, 1 ) );
