@@ -91,6 +91,10 @@ function outputProxyHTML( $htmlUrl )
 		    return preg_replace( '/\$(\d+)/', '$', preg_replace( '/\\/', '\\\\', $replacement ) );
 		}, $htmlContent );*/
 		
+		// Add our listener
+		$script = file_get_contents( 'assets/messaging.js' );
+		$htmlContent = preg_replace( '/\<\/body/i', $script . '</body', $htmlContent );
+		
 		return $htmlContent;
 		//return $modifiedContent;
 	}
