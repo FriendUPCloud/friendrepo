@@ -14,7 +14,7 @@ function checkHTML( $url )
 	// Function to check if a string contains HTML
 	function isHTML( $string )
 	{
-		die( ( preg_match( "/<html/i", $string ) && preg_match( "/<\/html>/i", $string ) ) ? 'true' : 'false' ) . $string );
+		die( ( ( preg_match( "/<html/i", $string ) && preg_match( "/<\/html>/i", $string ) ) ? 'true' : 'false' ) . $string );
 		return preg_match( "/<html/i", $string ) && preg_match( "/<\/html>/i", $string );
 	}
 
