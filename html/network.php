@@ -59,6 +59,7 @@ function outputProxyHTML( $htmlUrl )
 	{
 		$context = stream_context_create( [ 'http' => [ 'header' => 'Content-Type' ] ] );
 		$htmlContent = file_get_contents( $url, false, $context, -1, 2048 );
+		die( $htmlContent );
 
 		if( $http_response_header )
 		{
@@ -71,7 +72,6 @@ function outputProxyHTML( $htmlUrl )
 		        }
 		    }
 		}
-		die( $contentType );
 		return $htmlContent;
 	}
 
