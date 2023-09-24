@@ -60,7 +60,7 @@ function outputProxyHTML( $htmlUrl )
 		$context = stream_context_create( [ 'http' => [ 'header' => 'Content-Type' ] ] );
 		$htmlContent = file_get_contents( $url, false, $context, -1, 2048 );
 
-		if($http_response_header)
+		if( $http_response_header )
 		{
 		    foreach( $http_response_header as $header )
 		    {
@@ -78,8 +78,9 @@ function outputProxyHTML( $htmlUrl )
 	// Load the HTML content from the URL and retrieve the Content-Type header
 	$htmlContent = loadHtmlWithContentTypeFromUrl($htmlUrl, $contentType);
 
+	die( $htmlContent );
 	// Modify the URLs in the HTML content
-	$modifiedHtml = modifyUrls($htmlContent);
+	$modifiedHtml = modifyUrls( $htmlContent );
 	
 	// Output the modified HTML content and the Content-Type header
 	header( 'Content-type: ' . $contentType );
