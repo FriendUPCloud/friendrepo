@@ -76,7 +76,8 @@ function outputProxyHTML( $htmlUrl )
 	}
 
 	// Load the HTML content from the URL and retrieve the Content-Type header
-	$htmlContent = loadHtmlWithContentTypeFromUrl($htmlUrl, $contentType);
+	die( $htmlUrl );
+	$htmlContent = loadHtmlWithContentTypeFromUrl( $htmlUrl, $contentType );
 
 	die( $htmlContent );
 	// Modify the URLs in the HTML content
