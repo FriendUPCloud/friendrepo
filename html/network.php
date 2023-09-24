@@ -70,6 +70,8 @@ function outputProxyHTML( $htmlUrl )
 		 // Remove target="_blank" attributes from links
 		$htmlContent = preg_replace( '/ target=["\']?_blank["\']?/i', '', $htmlContent );
 		$htmlContent = preg_replace( '/ target\=\"\_blank\"/i', '', $htmlContent );
+		$htmlContent = preg_replace( '/href=\"\/\/', '/href=\"' . parse_url( $htmlUrl, PHP_URL_HOST ), $htmlContent );
+		$htmlContent = preg_replace( '/href=\"\/', '/href=\"', $htmlContent );
 		
 		// Regular expression to match form action attributes in HTML
 		$formPattern = '/<form[^>]*action=["\']([^"\']+)["\'][^>]*>/i';
