@@ -9,5 +9,9 @@ document.body.addEventListener( 'load', function()
 			t[a].onmousedown = null;
 		if( t[a].onmouseup )
 			t[a].onmouseup = null;
+		if( t[a].getAttribute( 'target' ) )
+		{
+			t[a].setAttribute( 'target', '' );
+		}
 	}
 } );

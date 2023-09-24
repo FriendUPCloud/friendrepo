@@ -77,19 +77,6 @@ function outputProxyHTML( $htmlUrl )
 		// Regular expression to match <a> tag href links and replace them with the specified format
 		$aTagPattern = '/<a\s+[^>]*href=["\']([^"\']+)["\'][^>]*>/i';
 		$htmlContent = preg_replace( $aTagPattern, '<a href="' . $baseUrl . '/network.php?url=$1">', $htmlContent );
-
-
-		// Regular expression to match URLs in HTML attributes (src, href, etc.)
-		/*$pattern = '/(src|href)=["\'](https?:\/\/[^"\']+)["\']/i';
-		
-		// Callback function to replace URLs with the modified format
-		$replacement = '$1="network.php?url=' . urlencode( '$2' ) . '"';
-		
-		// Use preg_replace_callback to modify the URLs
-		$modifiedContent = preg_replace_callback( $pattern, function( $matches ) use ( $replacement )
-		{
-		    return preg_replace( '/\$(\d+)/', '$', preg_replace( '/\\/', '\\\\', $replacement ) );
-		}, $htmlContent );*/
 		
 		// Add our listener
 		$script = file_get_contents( 'assets/messaging.js' );
