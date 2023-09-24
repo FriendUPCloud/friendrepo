@@ -51,7 +51,7 @@ function outputProxyHTML( $htmlUrl )
 		$baseUrl = getBaseUrl();
 
 		// Extract the host from the base URL
-		$baseHost = parse_url( $htmlUrl, PHP_URL_HOST );
+		$baseHost = parse_url( $htmlUrl, PHP_URL_SCHEME ) . '://' . parse_url( $htmlUrl, PHP_URL_HOST );
 		
 		// Check if an existing base href tag is present in the HTML
 		if( preg_match($basePattern, $htmlContent, $matches ) ) 
