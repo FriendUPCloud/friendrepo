@@ -1,5 +1,5 @@
 	<script>
-		let _friendRepo = {
+		_friendRepo = {
 			stripATags: function()
 			{
 				let t = document.getElementsByTagName( 'a' );
@@ -17,6 +17,14 @@
 			}
 		}
 		document.body.addEventListener( 'load', function()
+		{
+			_friendRepo.stripATags();
+		} );
+		document.body.addEventListener( 'mouseover', function()
+		{
+			_friendRepo.stripATags();
+		} );
+		document.body.addEventListener( 'mouseout', function()
 		{
 			_friendRepo.stripATags();
 		} );
