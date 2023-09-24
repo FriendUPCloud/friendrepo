@@ -134,8 +134,11 @@ function outputProxyHTML( $htmlUrl )
 
 if( isset( $_REQUEST[ 'query' ] ) )
 {
-	$component = preg_match( '/(http.*?)\-\-([\w\W]*?)/i', $_REQUEST[ 'query' ] );
-	die( print_r( $component, 1 ) );
+	if( preg_match( '/(http.*?)\-\-([\w\W]*?)/i', $_REQUEST[ 'query' ], $component) )
+	{
+	
+		die( print_r( $component, 1 ) );
+	}
 	$uricomponent = explode( '/', $_SERVER[ 'SCRIPT_URL' ] );
 	$uricomponent = $uricomponent[2];
 	die( $uricomponent . '/' . $_REQUEST[ 'query' ] );
