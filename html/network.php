@@ -94,7 +94,11 @@ if( isset( $_REQUEST[ 'url' ] ) )
 		// Dies here
 		outputProxyHTML( $url );
 	}
-	header( 'Location: ' . $_REQUEST[ 'url' ] );
+	else
+	{
+		die( 'redirected..' );
+		header( 'Location: ' . $_REQUEST[ 'url' ] );
+	}
 }
 
 die( file_get_Contents( 'assets/404.html' ) );
