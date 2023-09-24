@@ -62,12 +62,15 @@ function outputProxyHTML( $htmlUrl )
 		curl_setopt($ch, CURLOPT_HEADER, true);
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false); // Disable automatic redirection
 
-		$response = curl_exec($ch);
-		$httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE); // Get the HTTP status code
-		$headerSize = curl_getinfo($ch, CURLINFO_HEADER_SIZE);
-		$contentType = curl_getinfo($ch, CURLINFO_CONTENT_TYPE);
+		$response = curl_exec( $ch );
+		$httpCode = curl_getinfo( $ch, CURLINFO_HTTP_CODE ); // Get the HTTP status code
+		$headerSize = curl_getinfo( $ch, CURLINFO_HEADER_SIZE );
+		$contentType = curl_getinfo( $ch, CURLINFO_CONTENT_TYPE );
+		
+		// Set the User-Agent header to mimic a Firefox request
+	    curl_setopt( $ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:90.0) Gecko/20100101 Firefox/90.0' );
 
-		curl_close($ch);
+		curl_close( $ch );
 
 		// Check if the HTTP status code is 302 (temporary redirect)
 		$isRedirect = ($httpCode == 302);
